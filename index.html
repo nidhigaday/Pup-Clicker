@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Pup Clicker</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="cats.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Pup Clicker</h1>
+        <p>How many pups you want to see?</p>
+        <form id="catCount">
+            <input class="puptype" type="radio" name="puptype" value="dog"><span>Puppies</span>
+            <input class="puptype" type="radio" name="puptype" value="cat"><span>Cats</span>
+            <input class="puptype" type="radio" name="puptype" value="both" checked><span>Both</span>
+            <br>
+            <input id="catsValue" type="number" value="1" min="1" max="" />
+            <input type="submit" value="Submit" />
+            <input id="reset" type="reset" value="Reset" />
+        </form>
+        <div class="row cat-list"></div>
+        <hr>
+        <div class="display-area">
+            <img id="large-image" src="" style="border:0" alt="Click on image above to see Larger image here" />
+        </div>
+    </div>
+    <script src="clicker.js"></script>
+</body>
+
+</html>
