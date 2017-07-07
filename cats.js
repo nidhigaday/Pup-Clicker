@@ -26,15 +26,15 @@ BabyAnimal.prototype.template = function() {
 var allpups = [];
 
 //all  animals created using class function
-allpups.push(new BabyAnimal('Rufus', 'images/puppy.JPG', 'dog'));
+allpups.push(new BabyAnimal('Rufus', 'images/puppy.jpg', 'dog'));
 allpups.push(new BabyAnimal('Tina', 'images/Cat.jpg', 'cat'));
-allpups.push(new BabyAnimal('Oscar', 'images/puppyTwo.PNG', 'dog'));
+allpups.push(new BabyAnimal('Oscar', 'images/puppyTwo.png', 'dog'));
 allpups.push(new BabyAnimal('Teddy', 'images/CatTwo.jpg', 'cat'));
-allpups.push(new BabyAnimal('Sleepy', 'images/puppyThree.JPG', 'dog'));
+allpups.push(new BabyAnimal('Sleepy', 'images/puppyThree.jpg', 'dog'));
 allpups.push(new BabyAnimal('Ruff and Tuff', 'images/CatThree.jpg', 'cat'));
-allpups.push(new BabyAnimal('Pluto, Sunny & Brian', 'images/puppyFour.JPG', 'dog'));
+allpups.push(new BabyAnimal('Pluto, Sunny & Brian', 'images/puppyFour.jpg', 'dog'));
 allpups.push(new BabyAnimal('Marcus', 'images/CatFour.jpg', 'cat'));
-allpups.push(new BabyAnimal('Mikky & Ginny', 'images/puppyFive.JPG', 'dog'));
+allpups.push(new BabyAnimal('Mikky & Ginny', 'images/puppyFive.jpg', 'dog'));
 allpups.push(new BabyAnimal('Mike', 'images/CatFive.jpg', 'cat'));
 allpups.push(new BabyAnimal('Mau & Pau', 'images/puppySix.jpg', 'dog'));
 
