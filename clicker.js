@@ -30,9 +30,7 @@ function loadPups(e) {
                 //function call to render puppies in cats.js
                 woof[x].template();
                 counter++;
-            } else {
-                return;
-            }
+            } 
         }
     };
 
