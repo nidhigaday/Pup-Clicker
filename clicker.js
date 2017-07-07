@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    console.log('page is ready after load');
     $('#catsValue').attr('max', allpups.length);
 });
 
