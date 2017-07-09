@@ -5,6 +5,8 @@ $(document).ready(function() {
 //to get no. of animals and their types and fetch it from the database
 function loadPups(e) {
     e.preventDefault();
+    $(this).attr('disabled', true);
+    
     var pupNumbers, babyType;
 
     //get the no. of puppies to display from input vallue
@@ -15,10 +17,7 @@ function loadPups(e) {
         babyType = $("input[type='radio'].puptype:checked").val();
     }
 
-    //main function that takes
-    //number of puppies,
-    //all puppies object from cat.js
-    //and type of puppies from pupType
+    //main function that takes number of puppies, all puppies object from cat.js and type of puppies from pupType
     var pupClicker = function(n, woof, typeee) {
         var counter = 0;
 
@@ -38,22 +37,27 @@ function loadPups(e) {
     pupClicker(pupNumbers, allpups, babyType);
 
     //checks if image was clicked and display the respective larger image
-    //keeping this below pupclicker function call
-    //because click on image is checked only once template function is done rendering images
+    //keeping this below pupclicker function call because click on image is checked only once template function is done rendering images
     $('.cat-list img').click(function() {
-        var index = $(this).parent().index();
-        $('#large-image').attr('src', allpups[index].image);
+        var bigImg = $(this).attr('src');
+        $.each(allpups, function(index) {
+            if (allpups[index].image == bigImg) {
+                $('#large-image').attr('src', bigImg);
+            }
+        });
+
         $(this).parent().find('span').text(function() {
             var clicks = parseInt($(this).text(), 10) + 1;
             return clicks;
         });
     });
-    return false;
+    
+    return false;  //return function for loadpups
 }
 
 //function to reset all the values
 function resetPage() {
-    console.log('hevvo');
+    $('input:submit').attr('disabled', false);
     $('div.col').remove();
     $('#large-image').attr('src', '');
 }
