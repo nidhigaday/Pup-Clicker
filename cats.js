@@ -16,10 +16,10 @@ var BabyAnimal = function(name, path, typee) {
 
 BabyAnimal.prototype.template = function() {
     return $('.row').append('<div class="col">' +
-            '<h2>' + this.name + '</h2>' +
-            '<img src="' + this.image + '">' +
-            '<h3>No. of clicks <span>0</span></h3>' +
-            '</div>');
+        '<img src="' + this.image + '">' +
+        '<h2 class="col_title">' + this.name + '</h2>' +
+        '<h3>No. of clicks <span>0</span></h3>' +
+        '</div>');
 };
 
 //array to store all the animal objects
