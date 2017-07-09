@@ -1,6 +1,6 @@
 # Pup-Clicker
 
-##https://nidhigaday.github.io/Pup-Clicker/
+https://nidhigaday.github.io/Pup-Clicker/
 
 <br>The main purpose of this project is to acomodate changing requirements of a project in optimal way.
 
