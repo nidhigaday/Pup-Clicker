@@ -92,6 +92,11 @@ img {
     height: 170px;
 }
 
+
+.cat-list img:hover {
+    cursor: pointer;
+}
+
 .cat-list :hover .col_title {
     opacity: 0.8;
 }
