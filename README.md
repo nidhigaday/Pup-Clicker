@@ -7,5 +7,6 @@ https://nidhigaday.github.io/Pup-Clicker/
 <br>Processes and methodologies used:
 <br>1. Functional Classes prototype 
 <br>2. Responsive design
+<br>3. MVC
 
 This project is still in progress. I have added comments for clarification of each function in the code.
