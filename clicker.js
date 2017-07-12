@@ -13,9 +13,9 @@ var view = {
     init: function(){
         $('input:submit').click(octopus.initSubmit);
         $('input:reset').click(octopus.initReset);
-        //$('.cat-list img').click(octopus.itemClicked);
     },
     pupItem: function(){
+        //used this to practice psudoclassical classes
         var BabyAnimal = data.method;
         data.allpups.push(new BabyAnimal('Rufus', 'images/puppy.jpg', 'dog'));
         data.allpups.push(new BabyAnimal('Tina', 'images/Cat.jpg', 'cat'));
