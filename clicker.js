@@ -17,18 +17,17 @@ var view = {
     },
     pupItem: function(){
         var BabyAnimal = data.method;
-        data.allpups.push(new BabyAnimal('Rufus', 'images/puppy.JPG', 'dog'));
+        data.allpups.push(new BabyAnimal('Rufus', 'images/puppy.jpg', 'dog'));
         data.allpups.push(new BabyAnimal('Tina', 'images/Cat.jpg', 'cat'));
-        data.allpups.push(new BabyAnimal('Oscar', 'images/puppyTwo.PNG', 'dog'));
+        data.allpups.push(new BabyAnimal('Oscar', 'images/puppyTwo.png', 'dog'));
         data.allpups.push(new BabyAnimal('Teddy', 'images/CatTwo.jpg', 'cat'));
-        data.allpups.push(new BabyAnimal('Sleepy', 'images/puppyThree.JPG', 'dog'));
+        data.allpups.push(new BabyAnimal('Sleepy', 'images/puppyThree.jpg', 'dog'));
         data.allpups.push(new BabyAnimal('Ruff and Tuff', 'images/CatThree.jpg', 'cat'));
-        data.allpups.push(new BabyAnimal('Pluto, Sunny & Brian', 'images/puppyFour.JPG', 'dog'));
+        data.allpups.push(new BabyAnimal('Pluto, Sunny & Brian', 'images/puppyFour.jpg', 'dog'));
         data.allpups.push(new BabyAnimal('Marcus', 'images/CatFour.jpg', 'cat'));
-        data.allpups.push(new BabyAnimal('Mikky & Ginny', 'images/puppyFive.JPG', 'dog'));
+        data.allpups.push(new BabyAnimal('Mikky & Ginny', 'images/puppyFive.jpg', 'dog'));
         data.allpups.push(new BabyAnimal('Mike', 'images/CatFive.jpg', 'cat'));
         data.allpups.push(new BabyAnimal('Mau & Pau', 'images/puppySix.jpg', 'dog'));
-        console.log(data.allpups.length);
     },
     render: function(info) {
         return $('.row').append('<div class="col">' +
