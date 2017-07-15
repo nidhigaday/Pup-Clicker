@@ -7,36 +7,22 @@ $(function() {
             }
         },
         add: function(obj) {
-            //console.log(obj);
             var data = JSON.parse(localStorage.notes);
-            //console.log(data);
-            //console.log('checking duplicacy');
-            if(jQuery.inArray(obj.image, data != 1)) { data.push(obj); }
-            console.log();
-            // data.includes(obj.name) ? data.push(obj) : false;
-            // data.push(obj);
-            // var valueArr = values.map(function(item){ return item.name });
-            // var isDuplicate = valueArr.some(function(item, idx){
-            //     return valueArr.indexOf(item) != idx
-            // });
+            var duplicate = data.some(function(item){
+                return item.image === obj.image;
+            });
+            if(!duplicate) {
+                data.push(obj);
+            }
+            localStorage.notes = JSON.stringify(data);
+        },
+        addClicks: function(indx, count) {
+            var data = JSON.parse(localStorage.notes);
+            data[indx].clicks = count;
             localStorage.notes = JSON.stringify(data);
         },
         getAllNotes: function() {
             return JSON.parse(localStorage.notes);
-        }
-    };
-
-    var view = {
-        init: function() {
-            $('input:submit').click(octopus.initSubmit);
-            $('input:reset').click(octopus.initReset);
-        },
-        render: function(info) {
-            return $('.row').append('<div class="col">' +
-                '<img src="' + info.image + '">' +
-                '<h2 class="col_title">' + info.name + '</h2>' +
-                '<h3>No. of clicks <span>0</span></h3>' +
-                '</div>');
         }
     };
 
@@ -49,10 +35,12 @@ $(function() {
         },
         method: function(name, path, typee) {
             model.add({
+                id: 'ID-'+ path.slice(7),
                 name : name,
                 image : path,
                 type : typee,
-                category : 'both'
+                category : 'both',
+                clicks: 0
             });
         },
         getPups: function(n, woof, typeee) {
@@ -89,21 +77,40 @@ $(function() {
             $('#large-image').attr('src', '');
         },
         itemClicked: function() {
-            //displays larger imag
-            var bigImg = $(this).attr('src');
-            var pupInfo = octopus.getNotes();
-            $.each(pupInfo, function(index) {
-                if (pupInfo[index].image == bigImg) {
+            //displays larger image
+            var bigImg, pupInfo, indexVal;
+
+            bigImg = $(this).attr('src');
+            pupInfo = octopus.getNotes();
+            pupInfo.some(function(item, i) {
+                if(item.image == bigImg) {
                     $('#large-image').attr('src', bigImg);
+                    indexVal = i;
                 }
             });
-            //displays no. of clicks
+
             $(this).parent().find('span').text(function() {
                 var clicks = parseInt($(this).text(), 10) + 1;
+                model.addClicks(indexVal, clicks);
                 return clicks;
             });
         }
     };
+
+    var view = {
+        init: function() {
+            $('input:submit').click(octopus.initSubmit);
+            $('input:reset').click(octopus.initReset);
+        },
+        render: function(info) {
+            return $('.row').append('<div class="col">' +
+                '<img src="' + info.image + '">' +
+                '<h2 class="col_title">' + info.name + '</h2>' +
+                '<h3>No. of clicks <span>' + info.clicks + '</span></h3>' +
+                '</div>');
+        }
+    };
+
 
     function pupItem() {
         octopus.method('Rufus', 'images/puppy.jpg', 'dog');
