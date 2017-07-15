@@ -1,12 +1,28 @@
 $(function() {
 
-    var data = {
-        allpups: [],
-        method: function(name, path, typee) {
-            this.name = name;
-            this.image = path;
-            this.type = typee;
-            this.category = 'both';
+    var model = {
+        init: function() {
+            if (!localStorage.notes) {
+                localStorage.notes = JSON.stringify([]);
+            }
+        },
+        add: function(obj) {
+            //console.log(obj);
+            var data = JSON.parse(localStorage.notes);
+            //console.log(data);
+            //console.log('checking duplicacy');
+            if(jQuery.inArray(obj.image, data != 1)) { data.push(obj); }
+            console.log();
+            // data.includes(obj.name) ? data.push(obj) : false;
+            // data.push(obj);
+            // var valueArr = values.map(function(item){ return item.name });
+            // var isDuplicate = valueArr.some(function(item, idx){
+            //     return valueArr.indexOf(item) != idx
+            // });
+            localStorage.notes = JSON.stringify(data);
+        },
+        getAllNotes: function() {
+            return JSON.parse(localStorage.notes);
         }
     };
 
@@ -26,9 +42,18 @@ $(function() {
 
     var octopus = {
         init: function() {
+            model.init();
             pupItem();
             view.init();
-            $('#catsValue').attr('max', data.allpups.length);
+            $('#catsValue').attr('max', this.getNotes().length);
+        },
+        method: function(name, path, typee) {
+            model.add({
+                name : name,
+                image : path,
+                type : typee,
+                category : 'both'
+            });
         },
         getPups: function(n, woof, typeee) {
             var counter = 0;
@@ -40,18 +65,22 @@ $(function() {
             }
             $('.cat-list img').click(this.itemClicked);
         },
+        getNotes: function() {
+            return model.getAllNotes();
+        },
         initSubmit: function(e) {
             //gets value from form input
             e.preventDefault();
             //disables Submit button once clicked
             $(this).attr('disabled', true);
-            var pupNumbers, babyType;
+            var pupNumbers, babyType, pupArray ;
             pupNumbers = $('#catsValue').val();
+            pupArray = octopus.getNotes();
             if ($("input[type='radio'].puptype").is(':checked')) {
                 babyType = $("input[type='radio'].puptype:checked").val();
             }
             //this.getPups will not work here. 'this' is 'e' from input value
-            octopus.getPups(pupNumbers, data.allpups, babyType);
+            octopus.getPups(pupNumbers, pupArray, babyType);
         },
         initReset: function() {
             //re-enable Submit button on Reset
@@ -60,9 +89,9 @@ $(function() {
             $('#large-image').attr('src', '');
         },
         itemClicked: function() {
-            //displays larger image
+            //displays larger imag
             var bigImg = $(this).attr('src');
-            var pupInfo = data.allpups;
+            var pupInfo = octopus.getNotes();
             $.each(pupInfo, function(index) {
                 if (pupInfo[index].image == bigImg) {
                     $('#large-image').attr('src', bigImg);
@@ -74,23 +103,21 @@ $(function() {
                 return clicks;
             });
         }
-
     };
 
     function pupItem() {
-        var BabyAnimal = data.method;
-        data.allpups.push(new BabyAnimal('Rufus', 'images/puppy.jpg', 'dog'));
-        data.allpups.push(new BabyAnimal('Tina', 'images/Cat.jpg', 'cat'));
-        data.allpups.push(new BabyAnimal('Oscar', 'images/puppyTwo.png', 'dog'));
-        data.allpups.push(new BabyAnimal('Teddy', 'images/CatTwo.jpg', 'cat'));
-        data.allpups.push(new BabyAnimal('Sleepy', 'images/puppyThree.jpg', 'dog'));
-        data.allpups.push(new BabyAnimal('Ruff and Tuff', 'images/CatThree.jpg', 'cat'));
-        data.allpups.push(new BabyAnimal('Pluto, Sunny & Brian', 'images/puppyFour.jpg', 'dog'));
-        data.allpups.push(new BabyAnimal('Marcus', 'images/CatFour.jpg', 'cat'));
-        data.allpups.push(new BabyAnimal('Mikky & Ginny', 'images/puppyFive.jpg', 'dog'));
-        data.allpups.push(new BabyAnimal('Mike', 'images/CatFive.jpg', 'cat'));
-        data.allpups.push(new BabyAnimal('Mau & Pau', 'images/puppySix.jpg', 'dog'));
-    };
+        octopus.method('Rufus', 'images/puppy.jpg', 'dog');
+        octopus.method('Tina', 'images/Cat.jpg', 'cat');
+        octopus.method('Oscar', 'images/puppyTwo.png', 'dog');
+        octopus.method('Teddy', 'images/CatTwo.jpg', 'cat');
+        octopus.method('Sleepy', 'images/puppyThree.jpg', 'dog');
+        octopus.method('Ruff and Tuff', 'images/CatThree.jpg', 'cat');
+        octopus.method('Pluto, Sunny & Brian', 'images/puppyFour.jpg', 'dog');
+        octopus.method('Marcus', 'images/CatFour.jpg', 'cat');
+        octopus.method('Mikky & Ginny', 'images/puppyFive.jpg', 'dog');
+        octopus.method('Mike', 'images/CatFive.jpg', 'cat');
+        octopus.method('Mau & Pau', 'images/puppySix.jpg', 'dog');
+    }
 
     octopus.init();
 }());
