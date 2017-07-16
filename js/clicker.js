@@ -43,6 +43,9 @@ $(function() {
                 clicks: 0
             });
         },
+        getNotes: function() {
+            return model.getAllNotes();
+        },
         getPups: function(n, woof, typeee) {
             var counter = 0;
             for (x = 0; x < woof.length; x++) {
@@ -51,10 +54,7 @@ $(function() {
                     counter++;
                 }
             }
-            $('.cat-list img').click(this.itemClicked);
-        },
-        getNotes: function() {
-            return model.getAllNotes();
+            $('.cat-list img').click(this.pupClicked);
         },
         initSubmit: function(e) {
             //gets value from form input
@@ -69,31 +69,39 @@ $(function() {
             }
             //this.getPups will not work here. 'this' is 'e' from input value
             octopus.getPups(pupNumbers, pupArray, babyType);
+            $('#large-image').click(octopus.imgClicked);
+
         },
         initReset: function() {
-            //re-enable Submit button on Reset
-            $('input:submit').attr('disabled', false);
-            $('div.col').remove();
-            $('#large-image').attr('src', '');
+            localStorage.clear();
+            window.location.reload();
         },
-        itemClicked: function() {
+        pupClicked: function() {
             //displays larger image
-            var bigImg, pupInfo, indexVal;
-
+            var bigImg, pupInfo;
             bigImg = $(this).attr('src');
             pupInfo = octopus.getNotes();
-            pupInfo.some(function(item, i) {
+            pupInfo.some(function(item) {
                 if(item.image == bigImg) {
-                    $('#large-image').attr('src', bigImg);
-                    indexVal = i;
+                    view.renderImg(item);
                 }
             });
-
-            $(this).parent().find('span').text(function() {
-                var clicks = parseInt($(this).text(), 10) + 1;
-                model.addClicks(indexVal, clicks);
-                return clicks;
+        },
+        imgClicked: function() {
+            var img, list, loc, clicks;
+            img = $(this).attr('src');
+            list = octopus.getNotes();
+            list.some(function(item, x){
+                if(item.image == img) {
+                    loc = x;
+                }
             });
+            clicks = list[loc].clicks;
+            clicks = clicks + 1;
+            $(this).parent().find('span').text(clicks);
+            model.addClicks(loc, clicks);
+            return clicks;
+
         }
     };
 
@@ -106,8 +114,14 @@ $(function() {
             return $('.row').append('<div class="col">' +
                 '<img src="' + info.image + '">' +
                 '<h2 class="col_title">' + info.name + '</h2>' +
-                '<h3>No. of clicks <span>' + info.clicks + '</span></h3>' +
                 '</div>');
+        },
+        renderImg: function(pup) {
+            $('div.pup_details').remove();
+            $('.display-area').prepend('<div class="pup_details">' +
+                '<h3 class="pup_name">' + pup.name + '</h3>' +
+                '<h3 class="pup_clicks">No. of clicks <span>' + pup.clicks + '</span></h3></div>');
+            $('#large-image').attr('src', pup.image);
         }
     };
 
