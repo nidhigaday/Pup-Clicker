@@ -38,7 +38,7 @@ form {
 input {
     padding: 3px;
     width: 72px;
-    border-radius: 15px;
+    border-radius: 9px;
 }
 
 input[type="radio"] {
@@ -107,7 +107,9 @@ img {
     height: 170px;
 }
 
-.cat-list img:hover {
+.cat-list img:hover,
+.display-area img:hover,
+.sec_admin h4:hover {
     cursor: pointer;
 }
 
