@@ -22,8 +22,6 @@ h2 {
     opacity: 0;
     top: 0;
     transition: .5s ease;
-    /*transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);*/
 }
 
 .container {
@@ -40,6 +38,7 @@ form {
 input {
     padding: 3px;
     width: 72px;
+    border-radius: 15px;
 }
 
 input[type="radio"] {
