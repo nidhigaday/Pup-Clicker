@@ -1,5 +1,5 @@
 body {
-    background-color: #000;
+    background-color: #092c2f;
     color: #fff;
 }
 
@@ -92,13 +92,13 @@ img {
     color: #000;
     background-color: #fff;
     border-radius: 10px;
-    width: 500px;
+    width: 45%;
     margin: 5px auto;
     padding: 5px 0;
 }
 
 .display-area h3.pup_clicks {
-    width: 500px;
+    width: 45%;
     margin: 15px auto;
     padding: 5px 0;
     border-radius: 10px;
@@ -122,6 +122,10 @@ img {
     }
     .col {
         width: 30%;
+    }
+    .display-area h3.pup_name,
+    .display-area h3.pup_clicks {
+        width: 90%;
     }
 }
 
