@@ -1,5 +1,5 @@
 body {
-    background-color: #092c2f;
+    background-color: #000;
     color: #fff;
 }
 
@@ -83,15 +83,29 @@ img {
     text-align: center;
 }
 
-.col h3 {
+.display-area h3 {
     border: 1px solid #fff;
     padding: 5px;
 }
 
+.display-area h3.pup_name {
+    color: #000;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 500px;
+    margin: 5px auto;
+    padding: 5px 0;
+}
+
+.display-area h3.pup_clicks {
+    width: 500px;
+    margin: 15px auto;
+    padding: 5px 0;
+    border-radius: 10px;
+}
 .cat-list img {
     height: 170px;
 }
-
 
 .cat-list img:hover {
     cursor: pointer;
