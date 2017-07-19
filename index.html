@@ -20,7 +20,7 @@
             <input class="puptype" type="radio" name="puptype" value="both" checked><span>Both</span>
             <br>
             <input id="catsValue" type="number" value="1" min="1" max="" />
-            <input type="submit" value="Submit" />
+            <input class="init_Submit" type="submit" value="Submit" />
             <input id="reset" type="reset" value="Reset" />
         </form>
         <div class="row cat-list"></div>
@@ -30,6 +30,11 @@
         </div>
         <div class="sec_admin">
             <h4>Admin</h4>
+            <div class="sec_view" id="admin_view">
+                Name: <input type="text" name="admin" value="" class="admin_input new_name"><br>
+                Clicks: <input type="number" name="admin" value="" class="admin_input new_count"><br>
+                <input type="submit" value="Save" class="admin_save"/>
+            </div>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
