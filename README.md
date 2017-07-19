@@ -16,3 +16,5 @@ https://nidhigaday.github.io/Pup-Clicker/
 <br>4. Click on the thumbnail to see the large image 
 <br>5. Scroll down to change the name or number of clicks for the pup/kitten
 
+<br>Click on Reset to reset back to all initial values
+
