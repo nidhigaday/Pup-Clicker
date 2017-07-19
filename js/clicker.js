@@ -1,5 +1,7 @@
 $(function() {
 
+/*===============MODEL===============*/
+
     var model = {
         init: function() {
             if (!localStorage.notes) {
@@ -21,18 +23,31 @@ $(function() {
             data[indx].clicks = count;
             localStorage.notes = JSON.stringify(data);
         },
+        addData: function(n, pname) {
+            var newdata = JSON.parse(localStorage.notes);
+            newdata[n].name = pname;
+            //console.log(newdata[n]);
+            localStorage.notes = JSON.stringify(newdata);
+        },
         getAllNotes: function() {
             return JSON.parse(localStorage.notes);
+        },
+        index: {
+            key: 0
         }
     };
 
+/*===============OCTOPUS===============*/
+
     var octopus = {
+        //initial functions ready
         init: function() {
             model.init();
             pupItem();
             view.init();
             $('#catsValue').attr('max', this.getNotes().length);
         },
+        //function to get animal object
         method: function(name, path, typee) {
             model.add({
                 id: 'ID-'+ path.slice(7),
@@ -43,22 +58,19 @@ $(function() {
                 clicks: 0
             });
         },
+        //pull data from storage
         getNotes: function() {
             return model.getAllNotes();
         },
-        getPups: function(n, woof, typeee) {
-            var counter = 0;
-            for (x = 0; x < woof.length; x++) {
-                if ((woof[x].type === typeee && counter < n) || (woof[x].category === typeee && counter < n)) {
-                    view.render(woof[x]);
-                    counter++;
-                }
-            }
-            $('.cat-list img').click(this.pupClicked);
+        //reset function
+        initReset: function() {
+            localStorage.clear();
+            window.location.reload();
         },
-        initSubmit: function(e) {
+        // get input values for form submit
+        initSubmit: function() {
             //gets value from form input
-            e.preventDefault();
+            console.log('initSubmit called');
             //disables Submit button once clicked
             $(this).attr('disabled', true);
             var pupNumbers, babyType, pupArray ;
@@ -69,45 +81,89 @@ $(function() {
             }
             //this.getPups will not work here. 'this' is 'e' from input value
             octopus.getPups(pupNumbers, pupArray, babyType);
-            $('#large-image').click(octopus.imgClicked);
-
         },
-        initReset: function() {
-            localStorage.clear();
-            window.location.reload();
+        //function call to render list of pups
+        getPups: function(n, woof, typeee) {
+            var counter = 0;
+            for (x = 0; x < woof.length; x++) {
+                if ((woof[x].type === typeee && counter < n) || (woof[x].category === typeee && counter < n)) {
+                    view.render(woof[x]);
+                    counter++;
+                }
+            }
+            //enable click function for pups in the list
+            $('.cat-list img').click(this.pupClicked);
+            //this.initClicks();
         },
-        pupClicked: function() {
-            //displays larger image
+        //function to render clicked pup image in the list is clicked
+        pupClicked: function(e) {
+            e.preventDefault();
             var bigImg, pupInfo;
             bigImg = $(this).attr('src');
             pupInfo = octopus.getNotes();
-            pupInfo.some(function(item) {
+            pupInfo.some(function(item , i) {
                 if(item.image == bigImg) {
                     view.renderImg(item);
+                    model['index']['key'] = i;
                 }
             });
+            //enable click on the list and the larger image
+            octopus.initClicks();
         },
+        //make admin button visible; click function for large image and admin button
+        initClicks: function() {
+            $('#large-image').click(octopus.imgClicked);
+            $('.sec_admin h4').css('display','block');
+            $('.sec_admin h4').click(octopus.adminButton);
+        },
+        //function call to increment no. of clicks
         imgClicked: function() {
             var img, list, loc, clicks;
             img = $(this).attr('src');
             list = octopus.getNotes();
-            list.some(function(item, x){
-                if(item.image == img) {
-                    loc = x;
-                }
-            });
-            clicks = list[loc].clicks;
-            clicks = clicks + 1;
-            $(this).parent().find('span').text(clicks);
+            loc = model['index']['key'];
+            var val = $(this).parent().find('span').text();
+            val = parseInt(val, 10);
+            val += 1;
+            $(this).parent().find('span').text(val);
             model.addClicks(loc, clicks);
-            return clicks;
-
+        },
+        //make admin sec visible and click function call for Save button
+        adminButton: function(e) {
+            e.preventDefault();
+            $('.sec_view').css('display','block');
+            $('html, body').animate({
+                scrollTop: $("#admin_view").offset().top
+            }, 500);
+            $('.admin_save').click(octopus.adminData);
+        },
+        //function called when Save button in admin is clicked to update name and clicks of the pup
+        adminData: function() {
+            //e.preventDefault();
+            console.log('admin save function called');
+            var newName, newCount, dataList, m;
+            m = model['index']['key'];
+            newName = $('.new_name').val();
+            newCount = $('.new_count').val();
+            console.log(newName.length);
+            if(newCount.length > 0 && newName.length > 0) {
+                model.addData(m, newName);
+                model.addClicks(m, newCount);
+                dataList = octopus.getNotes();
+                view.renderImg(dataList[m]);
+                $('html, body').animate({
+                    scrollTop: $("#pup_details").offset().top
+                }, 100);
+                $('.sec_view').css('display','none');
+            }
         }
     };
 
+/*===============VIEW===============*/
+
     var view = {
         init: function() {
-            $('input:submit').click(octopus.initSubmit);
+            $('input.init_Submit:submit').click(octopus.initSubmit);
             $('input:reset').click(octopus.initReset);
         },
         render: function(info) {
@@ -118,8 +174,8 @@ $(function() {
         },
         renderImg: function(pup) {
             $('div.pup_details').remove();
-            $('.display-area').prepend('<div class="pup_details">' +
-                '<h3 class="pup_name">' + pup.name + '</h3>' +
+            $('.display-area').prepend('<div id="pup_details" class="pup_details">' +
+                '<h3 class="pup_name ' + pup.id + '">' + pup.name + '</h3>' +
                 '<h3 class="pup_clicks">No. of clicks <span>' + pup.clicks + '</span></h3></div>');
             $('#large-image').attr('src', pup.image);
         }
