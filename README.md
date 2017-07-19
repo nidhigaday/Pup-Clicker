@@ -9,3 +9,10 @@ https://nidhigaday.github.io/Pup-Clicker/
 <br>2. Responsive design
 <br>3. MVC
 
+<br>Functionality in the project:
+<br>1. Select pup or kitten or both 
+<br>2. Select number of images (max - 11)
+<br>3. Submit
+<br>4. Click on the thumbnail to see the large image 
+<br>5. Scroll down to change the name or number of clicks for the pup/kitten
+
