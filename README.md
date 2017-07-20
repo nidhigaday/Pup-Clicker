@@ -18,5 +18,5 @@ https://nidhigaday.github.io/Pup-Clicker/
 
 <br>Click on Reset to reset back to all initial values
 
-<br>###Images were copied from internet. I do not hold copyright for any image
+<br><strong>Images were copied from internet. I do not hold copyright for any image</strong>
 
