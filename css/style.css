@@ -13,7 +13,7 @@ h1 {
 }
 
 h2 {
-    font-size: 23px;
+    font-size: 16px;
     position: absolute;
     margin: 0;
     padding: 2px 0;
@@ -57,7 +57,7 @@ input[type="radio"] {
 }
 
 .col {
-    width: 18%;
+    width: 9%;
     margin: 1%;
     display: inline-block;
     vertical-align: top;
@@ -103,7 +103,7 @@ img {
 }
 
 .cat-list img {
-    height: 170px;
+    height: 80px;
 }
 
 .cat-list img:hover,
