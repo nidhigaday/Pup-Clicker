@@ -89,7 +89,7 @@ $(function() {
             pupNumbers = $('#catsValue').val();
             pupArray = octopus.getData();
             if ($("input[type='radio'].puptype").is(':checked')) {
-                babyType = view.getType;
+                babyType = view.getType();
             }
             //this.getPups will not work here. 'this' is 'e' from input value
             octopus.getPups(pupNumbers, pupArray, babyType);
