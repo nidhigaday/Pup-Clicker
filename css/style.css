@@ -36,7 +36,7 @@ form {
 }
 
 input {
-    padding: 3px;
+    /*padding: 3px;*/
     width: 72px;
     border-radius: 9px;
 }
@@ -75,7 +75,7 @@ img {
 
 .display-area {
     margin: 2% 10%;
-    padding: 0 0 15px 0;
+    padding-bottom: 15px;
     border-bottom: 1px solid #fff;
     width: 80%;
     display: block;
@@ -88,13 +88,13 @@ img {
     padding: 5px;
 }
 
-.display-area h3.pup_name {
+.display-area .pup_name {
     color: #000;
     background-color: #fff;
 }
 
-h3.pup_name,
-h3.pup_clicks {
+.pup_name,
+.pup_clicks {
     display: inline-block;
     width: 45%;
     margin: 2% 1%;
@@ -139,7 +139,7 @@ h3.pup_clicks {
     border: 1px solid #fff;
 }
 
-.sec_view input.admin_input {
+.sec_view .admin_input {
     margin-bottom: 10px;
     width: 150px;
 }
@@ -157,8 +157,8 @@ h3.pup_clicks {
     .col {
         width: 30%;
     }
-    .display-area h3.pup_name,
-    .display-area h3.pup_clicks {
+    .display-area .pup_name,
+    .display-area .pup_clicks {
         width: 90%;
         margin-top: 1%;
     }
