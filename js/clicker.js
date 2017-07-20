@@ -19,7 +19,6 @@ $(function() {
             localStorage.notes = JSON.stringify(data);
         },
         addClicks: function(indx, count) {
-            console.log(count);
             var data = JSON.parse(localStorage.notes);
             data[indx].clicks = count;
             //console.log(data[indx]);
@@ -131,7 +130,6 @@ $(function() {
             list = octopus.getNotes();
             loc = model['index']['key'];
             var val = $(this).parent().find('span').text();
-            console.log(val);
             val = parseInt(val, 10);
             val += 1;
             model.addClicks(loc, val);
