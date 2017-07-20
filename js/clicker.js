@@ -89,7 +89,7 @@ $(function() {
             pupNumbers = $('#catsValue').val();
             pupArray = octopus.getData();
             if ($("input[type='radio'].puptype").is(':checked')) {
-                babyType = $("input[type='radio'].puptype:checked").val();
+                babyType = view.getType;
             }
             //this.getPups will not work here. 'this' is 'e' from input value
             octopus.getPups(pupNumbers, pupArray, babyType);
@@ -170,6 +170,10 @@ $(function() {
             $('#catsValue').attr('max', octopus.getData().length);
             $('input.init_Submit:submit').click(octopus.initSubmit);
             $('input:reset').click(octopus.initReset);
+        },
+
+        getType: function() {
+            return $("input[type='radio'].puptype:checked").val();
         },
 
         //render function to list all pups
